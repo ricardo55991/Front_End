@@ -20,6 +20,9 @@ export default {
 
     salvar(curso){
         return api.post('Cursos', curso)
-    }
+    },
     
+    apagar(curso){
+        return api.delete('Cursos', {data: curso})
+    }
 }

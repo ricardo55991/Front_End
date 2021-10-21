@@ -2,13 +2,19 @@
     <main>
         <div id="content">
             <h1>Novo Curso</h1>
-
             <form @submit.prevent="salvar">
                 <div id="cursoArea">
                     <input type="text" placeholder="Título" v-model="curso.titulo">
                     <input type="text" placeholder="upload capa" v-model="curso.imagemCapa">
                     <input type="text" placeholder="Professor" v-model="curso.professor">
                     <input id="descricao" type="text" placeholder="Descrição" v-model="curso.cursoDescricao">
+                </div>
+
+                <div id="aulaArea">
+                    <h3>Aula</h3>
+                    <input type="text" placeholder="Título da aula" v-model="aula.aulaTitulo">
+                    <input type="text" placeholder="Link da aula" v-model="aula.aulaLink">
+                    <input id="descricao" type="text" placeholder="Descrição da aula" v-model="aula.aulaDescricao">
                 </div>
 
 
@@ -19,7 +25,8 @@
 </template>
 
 <script>
-import Curso from '../service/curso'
+import Curso from '../service/curso';
+import Aula from  '../service/aula';
 
 export default {
     name: 'AddCurso',
@@ -30,13 +37,24 @@ export default {
                 professor: '',
                 imagemCapa: '',
                 cursoDescricao: '',
+                
+            },
+            aula: {
+                aulaDescricao: '',
+                aulaTitulo: '',
+                aulaLink: '' ,
+                cursoId: 31
             }
+                
         }
     },
     methods:{
         salvar(){
             Curso.salvar(this.curso).then(resposta =>{
                 alert('Salvo com sucesso!')
+            }),
+            Aula.salvar(this.aula).then(resposta =>{
+                alert('Aula Salva com sucesso!')
             });
         }
     }

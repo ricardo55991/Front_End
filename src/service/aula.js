@@ -16,5 +16,9 @@ export default {
         }).catch(error => {
             return error
         })
+    },
+
+    salvar(aula){
+        return api.post('Aulas', aula)
     }
 }
